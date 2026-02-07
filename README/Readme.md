@@ -46,10 +46,8 @@ pip install geopy
 # Verify Django installation
 python -m django --version
 
+django installed 
 ![](<django installed successfully Screenshot .png>)
-
-
-bash
 
 # Create Django project
 django-admin startproject spotter_api .
@@ -59,6 +57,7 @@ python manage.py startapp routes
 python manage.py startapp fuel
 python manage.py startapp datalake
 
+Django server running on browser
 ![](<Django server running on browser Screenshot .png>)
 
 Step 3: Project Configuration
@@ -71,6 +70,7 @@ echo "SECRET_KEY=your_django_secret_key_here" >> .env
 # Generate Django secret key
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 
+django secret key for api created
 ![](<django secret key for api created  Screenshot .png>)
 
 
@@ -114,7 +114,7 @@ class FuelPrice(models.Model):
     
     class Meta:
         db_table = 'fuel_prices'
-
+migration for datalake success on terminal
 ![](<migration for datalake success on terminal Screenshot .png>)
 
 bash
@@ -123,6 +123,7 @@ bash
 python manage.py makemigrations
 python manage.py migrate
 
+fuel data imported success on termnal 
 ![](<fuel data imported success on termnal Screenshot .png>)
 
 Step 5: API Integration Setup
@@ -131,6 +132,7 @@ bash
 # Install geopy for distance calculations
 pip install geopy
 
+Geopy installled 
 ![](<Geopy installled successfully Screenshot.png>)
 
 bash
@@ -138,6 +140,7 @@ bash
 # Visit: https://openrouteservice.org/dev/#/signup
 # Add your API key to .env file
 
+open route service dashboard
 ![](<open route service dashboard Screenshot .png>)
 
 Step 6: Create Core Utilities
@@ -167,7 +170,9 @@ def get_route_geometry(start_coords, end_coords):
     headers = {'Authorization': settings.ORS_API_KEY}
     # Implementation details...
 
-https://Api_handling_missing_values_and_filtering_by_states_and_address.png
+Api handling missing values and filtering by states and address
+![](<Api handling missing values and filtering by states and address Screenshot .png>)
+
 Step 7: Implement API Views
 
 Create routes/views.py:
@@ -193,7 +198,9 @@ urlpatterns = [
     path('api/calculate-route/', calculate_route, name='calculate_route'),
 ]
 
-https://accessing_fuel_Api_on_browser.png
+accessing_fuel_Api_on_browser
+![](<accessing fuel Api on browser Screenshot.png>)
+
 Step 8: Fuel Price API Endpoint
 
 Create fuel/views.py:
@@ -210,7 +217,9 @@ class FuelPriceAPI(APIView):
         df = pd.read_csv(csv_path)
         return Response(df.to_dict('records'))
 
-https://fuel_price.csv_served_by_django_api_on_browser.png
+hfuel_price.csv_served_by_django_api_on_browser
+![](<fuel price.csv served by django api on browser Screenshot .png>)
+
 Step 9: Testing with Postman
 bash
 
@@ -234,7 +243,9 @@ json
     "end": [-96.7969, 32.7767]
 }
 
-https://api_response_with_200_successful_response.png
+api_response_with_200_successful_response
+![](<api response with 200 successful response Screenshot.png>)
+
 Step 10: Response Validation
 
 Expected API Response Structure:
@@ -249,9 +260,13 @@ json
     "debug_info": {...}
 }
 
-https://fuel_price_calculation_success_response_for_state_with_cheapest_fuel.png
+fuel_price_calculation_success_response_for_state_with_cheapest_fuel.
+![](<fuel_price_calculation_success_response for state with cheapest fuel Screenshot .png>)
 
-https://api_postman_response_for_calculating_routes_distance_and_fuel_cost.png
+
+api_postman_response_for_calculating_routes_distance_and_fuel_cost
+![](<api postman response for calculating routes distance and fuel cost Screenshot .png>)
+
 Step 11: Error Handling Implementation
 
 Update your views with comprehensive error handling:
@@ -369,36 +384,6 @@ ORS_API_KEY=your_openrouteservice_api_key
 SECRET_KEY=your_django_secret_key
 DEBUG=True
 
-🚀 Quick Start
-
-Clone and setup:
-bash
-
-git clone <repository-url>
-cd spotter_Api
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Mac/Linux
-pip install -r requirements.txt
-
-Configure environment:
-bash
-
-cp .env.example .env
-# Edit .env with your API keys
-
-Run migrations:
-bash
-
-python manage.py migrate
-
-Start server:
-bash
-
-python manage.py runserver
-
-Test API:
-bash
 
 # Using curl
 curl -X POST http://localhost:8000/api/calculate-route/ \
