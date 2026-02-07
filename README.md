@@ -42,7 +42,7 @@ pip install geopy
 
 # Verify Django installation
 python -m django --version
-![Django Installation](README/images/django_installed_successfully.png)
+![Django Installation](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/django_installed_successfully.png)
 
 bash
 # Create Django project
@@ -52,7 +52,7 @@ django-admin startproject spotter_api .
 python manage.py startapp routes
 python manage.py startapp fuel
 python manage.py startapp datalake
-![Django Server Running](README/images/Django_server_running_on_browser.png)
+![Django Server Running](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/Django_server_running_on_browser.png)
 
 Step 3: Project Configuration
 bash
@@ -62,7 +62,7 @@ echo "SECRET_KEY=your_django_secret_key_here" >> .env
 
 # Generate Django secret key
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-![Django Secret Key](README/images/django_secret_key_for_api_created.png)
+![Django Secret Key](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/django_secret_key_for_api_created.png)
 
 Update settings.py:
 
@@ -102,25 +102,25 @@ class FuelPrice(models.Model):
     
     class Meta:
         db_table = 'fuel_prices'
-![Migration Success](README/images/migration_for_datalake_success_on_terminal.png)
+![Migration Success](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/migration_for_datalake_success_on_terminal.png)
 
 bash
 # Run migrations
 python manage.py makemigrations
 python manage.py migrate
-![Fuel Data Import](README/images/fuel_data_imported_success_on_terminal.png)
+![Fuel Data Import](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/fuel_data_imported_success_on_terminal.png)
 
 Step 5: API Integration Setup
 bash
 # Install geopy for distance calculations
 pip install geopy
-![Geopy Installation](README/images/Geopy_installled_successfully.png)
+![Geopy Installation](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/Geopy_installled_successfully.png)
 
 bash
 # Sign up for OpenRouteService API key
 # Visit: https://openrouteservice.org/dev/#/signup
 # Add your API key to .env file
-![OpenRouteService Dashboard](README/images/open_route_service_dashboard.png)
+![OpenRouteService Dashboard](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/open_route_service_dashboard.png)
 
 Step 6: Create Core Utilities
 Create routes/utils.py:
@@ -146,7 +146,7 @@ def get_route_geometry(start_coords, end_coords):
     url = "https://api.openrouteservice.org/v2/directions/driving-car"
     headers = {'Authorization': settings.ORS_API_KEY}
     # Implementation details...
-![API Data Handling](README/images/Api_handling_missing_values_and_filtering_by_states_and_address.png)
+![API Data Handling](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/Api_handling_missing_values_and_filtering_by_states_and_address.png)
 
 Step 7: Implement API Views
 Create routes/views.py:
@@ -170,7 +170,7 @@ from .views import calculate_route
 urlpatterns = [
     path('api/calculate-route/', calculate_route, name='calculate_route'),
 ]
-![Fuel API Access](README/images/accessing_fuel_Api_on_browser.png)
+![Fuel API Access](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/accessing_fuel_Api_on_browser.png)
 
 Step 8: Fuel Price API Endpoint
 Create fuel/views.py:
@@ -186,7 +186,7 @@ class FuelPriceAPI(APIView):
         csv_path = os.path.join('data', 'fuel-prices-for-be-assessment.csv')
         df = pd.read_csv(csv_path)
         return Response(df.to_dict('records'))
-![Fuel CSV API](README/images/fuel_price.csv_served_by_django_api_on_browser.png)
+![Fuel CSV API](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/fuel_price.csv_served_by_django_api_on_browser.png)
 
 Step 9: Testing with Postman
 bash
@@ -207,7 +207,7 @@ json
     "start": [-95.3698, 29.7604],
     "end": [-96.7969, 32.7767]
 }
-![API Response Success](README/images/api_response_with_200_successful_response.png)
+![API Response Success](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/api_response_with_200_successful_response.png)
 
 Step 10: Response Validation
 Expected API Response Structure:
@@ -221,9 +221,9 @@ json
     "recommended_stops": [...],
     "debug_info": {...}
 }
-![Fuel Calculation Success](README/images/fuel_price_calculation_success_response_for_state_with_cheapest_fuel.png)
+![Fuel Calculation Success](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/fuel_price_calculation_success_response_for_state_with_cheapest_fuel.png)
 
-![Route Calculation Response](README/images/api_postman_response_for_calculating_routes_distance_and_fuel_cost.png)
+![Route Calculation Response](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/api_postman_response_for_calculating_routes_distance_and_fuel_cost.png)
 
 Step 11: Error Handling Implementation
 Update your views with comprehensive error handling:
@@ -301,19 +301,19 @@ spotter_Api/
 ├── README/
 │   ├── README.md                # This documentation file
 │   └── images/                  # All screenshots
-│       ├── accessing_fuel_Api_on_browser.png
-│       ├── Api_handling_missing_values_and_filtering_by_states_and_address.png
-│       ├── api_postman_response_for_calculating_routes_distance_and_fuel_cost.png
-│       ├── api_response_with_200_successful_response.png
-│       ├── django_installed_successfully.png
-│       ├── django_secret_key_for_api_created.png
-│       ├── Django_server_running_on_browser.png
-│       ├── fuel_data_imported_success_on_terminal.png
-│       ├── fuel_price.csv_served_by_django_api_on_browser.png
-│       ├── fuel_price_calculation_success_response_for_state_with_cheapest_fuel.png
-│       ├── Geopy_installled_successfully.png
-│       ├── migration_for_datalake_success_on_terminal.png
-│       └── open_route_service_dashboard.png
+![Fuel API Access](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/accessing_fuel_Api_on_browser.png)
+![API Data Handling](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/Api_handling_missing_values_and_filtering_by_states_and_address.png)
+![Route Calculation Response](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/api_postman_response_for_calculating_routes_distance_and_fuel_cost.png)
+![API Response Success](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/api_response_with_200_successful_response.png)
+![Django Installation](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/django_installed_successfully.png)
+![Django Secret Key](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/django_secret_key_for_api_created.png)
+![Django Server Running](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/Django_server_running_on_browser.png)
+![Fuel Data Import](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/fuel_data_imported_success_on_terminal.png)
+![Fuel CSV API](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/fuel_price.csv_served_by_django_api_on_browser.png)
+![Fuel Calculation Success](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/fuel_price_calculation_success_response_for_state_with_cheapest_fuel.png)
+![Geopy Installation](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/Geopy_installled_successfully.png)
+![Migration Success](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/migration_for_datalake_success_on_terminal.png)
+![OpenRouteService Dashboard](https://github.com/anyanpee/Fuel-Optimized-Route-Planning-API/raw/main/README/images/open_route_service_dashboard.png)
 ├── data_storage/
 ├── datalake/
 ├── fuel/
@@ -391,4 +391,3 @@ Images not showing	Check paths in README.md
 ✅ Use provided fuel price CSV
 ✅ Single external API call to map/routing service
 ✅ Fast response time
-✅ Django latest stable version
