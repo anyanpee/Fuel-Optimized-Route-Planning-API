@@ -170,8 +170,8 @@ def get_route_geometry(start_coords, end_coords):
     # Implementation details...
 
 <!-- SCREENSHOT: API Data Handling -->
+![](<Api handling missing values and filtering by states and address Screenshot .png>)
 
-https://SCREENSHOT_PLACEHOLDER/Api_handling_missing_values_and_filtering_by_states_and_address.png
 Step 7: Implement API Views
 
 Create routes/views.py:
@@ -198,8 +198,8 @@ urlpatterns = [
 ]
 
 <!-- SCREENSHOT: Fuel API Access -->
+![](<accessing fuel Api on browser Screenshot.png>)
 
-https://SCREENSHOT_PLACEHOLDER/accessing_fuel_Api_on_browser.png
 Step 8: Fuel Price API Endpoint
 
 Create fuel/views.py:
@@ -217,8 +217,8 @@ class FuelPriceAPI(APIView):
         return Response(df.to_dict('records'))
 
 <!-- SCREENSHOT: Fuel CSV API -->
+![](<fuel price.csv served by django api on browser Screenshot .png>)
 
-https://SCREENSHOT_PLACEHOLDER/fuel_price.csv_served_by_django_api_on_browser.png
 Step 9: Testing with Postman
 bash
 
@@ -243,8 +243,8 @@ json
 }
 
 <!-- SCREENSHOT: API Response Success -->
+![](<api response with 200 successful response Screenshot.png>)
 
-https://SCREENSHOT_PLACEHOLDER/api_response_with_200_successful_response.png
 Step 10: Response Validation
 
 Expected API Response Structure:
@@ -260,11 +260,13 @@ json
 }
 
 <!-- SCREENSHOT: Fuel Calculation Success -->
+![](<fuel_price_calculation_success_response for state with cheapest fuel Screenshot .png>)
 
-https://SCREENSHOT_PLACEHOLDER/fuel_price_calculation_success_response_for_state_with_cheapest_fuel.png
 <!-- SCREENSHOT: Route Calculation Response -->
+![](<api postman response for calculating routes distance and fuel cost Screenshot .png>)
 
-https://SCREENSHOT_PLACEHOLDER/api_postman_response_for_calculating_routes_distance_and_fuel_cost.png
+![](<successfull post in postman for calculating distance, gallon of fuel and state map Screenshot .png>)
+
 Step 11: Error Handling Implementation
 
 Update your views with comprehensive error handling:
